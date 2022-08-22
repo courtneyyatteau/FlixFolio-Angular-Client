@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { UserRegistrationService } from './fetch-api-data.service';
 
-describe('FetchApiDataService', () => {
+describe('UserRegistrationService', () => {
   let service: UserRegistrationService;
 
   beforeEach(() => {

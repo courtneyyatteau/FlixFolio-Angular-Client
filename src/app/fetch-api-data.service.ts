@@ -34,7 +34,7 @@ export class UserRegistrationService {
 
   // api call for getting all movies
   public getAllMovies(): Observable<any> {
-    const token = localStorage.getItem('token');
+    let token = localStorage.getItem('token');
     return this.http
       .get(apiUrl + 'movies', {
         headers: new HttpHeaders({
