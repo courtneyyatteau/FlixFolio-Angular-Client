@@ -1,0 +1,51 @@
+.prof-title,
+.fav-title {
+  font-size: 30px;
+  font-weight: 700;
+  border: solid rgb(202, 200, 200) 1px;
+  border-bottom: solid black 3px;
+  padding: 10px;
+}
+
+.profile {
+  width: 60%;
+  margin: 20px auto;
+  padding-top: 25px;
+}
+
+.btn:hover,
+.prof-title:hover,
+.fav-title:hover {
+  background-color: rgb(218, 195, 240);
+  cursor: pointer;
+}
+
+.fav-title {
+  margin-left: 10px;
+}
+
+.list-movies {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin: 15px auto;
+}
+
+.movies {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 280px;
+  width: 280px;
+  margin: 10px;
+  padding: 20px 8px;
+}
+
+img {
+  width: 250px;
+  height: 350px;
+  object-fit: contain;
+}

@@ -1,0 +1,12 @@
+.nav-item {
+  margin: 28px;
+  font-size: 25px;
+  padding: 2px 5px;
+}
+
+.nav-item:hover {
+  cursor: pointer;
+  background-color: rgb(218, 195, 240);
+  border-radius: 7px;
+  border: solid 1px black;
+}

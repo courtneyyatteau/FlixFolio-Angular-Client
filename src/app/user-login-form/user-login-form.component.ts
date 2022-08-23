@@ -8,7 +8,7 @@ import { UserRegistrationService } from '../fetch-api-data.service';
 
 // import is used to display notifications back to the user
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Route, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-login-form',

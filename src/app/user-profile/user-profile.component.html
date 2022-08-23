@@ -1,0 +1,64 @@
+<app-navbar></app-navbar>
+
+<mat-card class="profile">
+  <span class="prof-title" (click)="getProfile()">My Profile</span>
+  <span class="fav-title" (click)="getFavorites()">My Favorites</span>
+  <mat-card-content class="card">
+    <div>
+      User information is shown below. To make changes, type and press submit.
+    </div>
+    <br />
+    <form>
+      <div class="form-row">
+        <span class="form-item">Username: </span>
+        <input
+          matInput
+          [(ngModel)]="userData.Username"
+          value="{{ userData.Username }}"
+          type="text"
+          name="username"
+          class="form-item"
+        />
+      </div>
+
+      <br />
+      <div class="form-row">
+        <span class="form-item">Password: </span>
+        <input
+          matInput
+          [(ngModel)]="userData.Password"
+          class="form-item"
+          name=""
+        />
+      </div>
+
+      <br />
+      <div class="form-row">
+        <span class="form-item">Email: </span>
+        <input
+          matInput
+          [(ngModel)]="userData.Email"
+          type="email"
+          value="{{ userData.Email }}"
+          name="email"
+          class="form-item"
+        />
+      </div>
+
+      <br />
+      <div class="form-row">
+        <span class="form-item">Birthday: </span>
+        <input
+          matInput
+          [(ngModel)]="userData.Birthday"
+          type="date"
+          value="{{ userData.Birthday }}"
+          name="Birthday"
+          class="form-item"
+        />
+      </div>
+      <br />
+      <button (click)="updateUser()" class="btn">Submit Changes</button>
+    </form>
+  </mat-card-content>
+</mat-card>

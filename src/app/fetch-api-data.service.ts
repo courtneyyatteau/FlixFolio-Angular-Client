@@ -7,6 +7,7 @@ import {
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { response } from 'express';
 
 const apiUrl = 'https://flixfolio.herokuapp.com/';
 @Injectable({
@@ -15,6 +16,7 @@ const apiUrl = 'https://flixfolio.herokuapp.com/';
 export class UserRegistrationService {
   // Inject the HttpClient module to the constructor params
   // This will provide HttpClient to the entire class, making it available via this.http
+
   constructor(private http: HttpClient) {}
   // api call for user registration endpoint
   public userRegistration(userDetails: any): Observable<any> {
@@ -62,7 +64,7 @@ export class UserRegistrationService {
     return this.http
       .get(apiUrl + `directors/${director}`, {
         headers: new HttpHeaders({
-          Authorization: 'Bearer' + token,
+          Authorization: 'Bearer ' + token,
         }),
       })
       .pipe(map(this.extractResponseData), catchError(this.handleError));
@@ -74,7 +76,7 @@ export class UserRegistrationService {
     return this.http
       .get(apiUrl + `genres/${genre}`, {
         headers: new HttpHeaders({
-          Authorization: 'Bearer' + token,
+          Authorization: 'Bearer ' + token,
         }),
       })
       .pipe(map(this.extractResponseData), catchError(this.handleError));
@@ -87,7 +89,7 @@ export class UserRegistrationService {
     return this.http
       .get(apiUrl + `users/${username}`, {
         headers: new HttpHeaders({
-          Authorization: 'Bearer' + token,
+          Authorization: 'Bearer ' + token,
         }),
       })
       .pipe(map(this.extractResponseData), catchError(this.handleError));
@@ -98,12 +100,29 @@ export class UserRegistrationService {
     const token = localStorage.getItem('token');
     const username = localStorage.getItem('user');
     return this.http
-      .get(apiUrl + `users/${username}/movies`, {
+      .get(apiUrl + `users/${username}`, {
         headers: new HttpHeaders({
-          Authorization: 'Bearer' + token,
+          Authorization: 'Bearer ' + token,
         }),
       })
       .pipe(map(this.extractResponseData), catchError(this.handleError));
+  }
+
+  public getFavoriteMovies() {
+    const token = localStorage.getItem('token');
+    const username = localStorage.getItem('user');
+    return this.http
+      .get<any>(apiUrl + `users/${username}`, {
+        headers: new HttpHeaders({
+          Authorization: 'Bearer ' + token,
+        }),
+      })
+      .pipe(
+        map((response) => ({
+          favorites: response.FavoriteMovies,
+        }))
+      )
+      
   }
 
   //api call for adding a favorite movie to a user list
@@ -113,7 +132,7 @@ export class UserRegistrationService {
     return this.http
       .post(apiUrl + `users/${username}/movies/${movieId}`, {
         headers: new HttpHeaders({
-          Authorization: 'Bearer' + token,
+          Authorization: 'Bearer ' + token,
         }),
       })
       .pipe(map(this.extractResponseData), catchError(this.handleError));
@@ -156,6 +175,14 @@ export class UserRegistrationService {
         }),
       })
       .pipe(map(this.extractResponseData), catchError(this.handleError));
+  }
+
+  public logoutUser(userDetails: any): Observable<any> {
+    console.log(userDetails);
+    localStorage.clear();
+    return this.http
+      .post(apiUrl + 'login', userDetails)
+      .pipe(catchError(this.handleError));
   }
 
   // Non-typed response extraction
