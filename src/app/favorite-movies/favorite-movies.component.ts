@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserRegistrationService } from '../fetch-api-data.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-favorite-movies',
@@ -14,6 +15,7 @@ export class FavoriteMoviesComponent implements OnInit {
 
   constructor(
     public fetchApiData: UserRegistrationService,
+    public snackBar: MatSnackBar,
     private router: Router
   ) {}
 
@@ -56,5 +58,23 @@ export class FavoriteMoviesComponent implements OnInit {
     });
     console.log(this.favsList);
     return this.favsList;
+  }
+
+  removeFav(id: any) {
+    this.fetchApiData.getAllMovies().subscribe((re: any) => {
+      this.movies = re;
+      this.movies.map((movie) => {
+        if (movie._id === id) {
+          this.fetchApiData.deleteFavMovie(id).subscribe((re: any) => {
+            id = re;
+            console.log(id);
+          });
+        }
+      });
+      this.snackBar.open('Movie removed from favorites successfully!', 'OK', {
+        duration: 2000,
+      });
+      this.router.navigate(['profile']);
+    });
   }
 }

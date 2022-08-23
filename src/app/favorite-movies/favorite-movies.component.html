@@ -6,15 +6,20 @@
     <mat-card *ngFor="let movie of favsList" class="movies">
       <mat-card-header>
         <mat-card-title>{{ movie.Title }}</mat-card-title>
-        <mat-card-subtitle
-          >Directed by: {{ movie.Director.Name }}</mat-card-subtitle
-        >
       </mat-card-header>
       <img src="{{ movie.ImagePath }}" alt="{{ movie.Title }}" />
       <mat-card-actions>
-        <button mat-button color="primary">Genre</button>
-        <button mat-button color="primary">Director</button>
-        <button mat-button color="primary">Synopsis</button>
+        <button
+          mat-button
+          color="primary"
+          (click)="removeFav(movie._id)"
+          [(ngModel)]="movie._id"
+          type="text"
+          value="{{ movie._id }}"
+          ngDefaultControl
+        >
+          Remove
+        </button>
       </mat-card-actions>
     </mat-card>
   </div>
