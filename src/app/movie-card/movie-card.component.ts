@@ -69,4 +69,10 @@ export class MovieCardComponent implements OnInit {
       duration: 2000,
     });
   }
+
+  getGenre(genre: any): void {
+    this.fetchApiData.getGenre(genre).subscribe((result) => {
+      console.log(result);
+    })
+  }
 }

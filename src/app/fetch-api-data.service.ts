@@ -75,7 +75,7 @@ export class UserRegistrationService {
   public getGenre(genre: any): Observable<any> {
     const token = localStorage.getItem('token');
     return this.http
-      .get(apiUrl + `genres/${genre}`, {
+      .get(apiUrl + `movies/genres/${genre}`, {
         headers: new HttpHeaders({
           Authorization: 'Bearer ' + token,
         }),
