@@ -12,7 +12,12 @@
       <button mat-button color="primary">Genre</button>
       <button mat-button color="primary">Director</button>
       <button mat-button color="primary">Synopsis</button>
-      <mat-icon>favorite_border</mat-icon>
+      <mat-icon
+        (click)="addFav(movie._id)"
+        [(ngModel)]="movie._id"
+        ngDefaultControl
+        >favorite_border</mat-icon
+      >
     </mat-card-actions>
   </mat-card>
 </div>

@@ -37,6 +37,7 @@ export class UserRegistrationService {
   // api call for getting all movies
   public getAllMovies(): Observable<any> {
     let token = localStorage.getItem('token');
+    const username = localStorage.getItem('user');
     return this.http
       .get(apiUrl + 'movies', {
         headers: new HttpHeaders({
@@ -108,29 +109,12 @@ export class UserRegistrationService {
       .pipe(map(this.extractResponseData), catchError(this.handleError));
   }
 
-  public getFavoriteMovies() {
-    const token = localStorage.getItem('token');
-    const username = localStorage.getItem('user');
-    return this.http
-      .get<any>(apiUrl + `users/${username}`, {
-        headers: new HttpHeaders({
-          Authorization: 'Bearer ' + token,
-        }),
-      })
-      .pipe(
-        map((response) => ({
-          favorites: response.FavoriteMovies,
-        }))
-      )
-      
-  }
-
   //api call for adding a favorite movie to a user list
-  public addFavMovie(movieId: any): Observable<any> {
+  public addFavMovie(movieID: string): Observable<any> {
     const token = localStorage.getItem('token');
     const username = localStorage.getItem('user');
     return this.http
-      .post(apiUrl + `users/${username}/movies/${movieId}`, {
+      .post(apiUrl + `users/${username}/movies/${movieID}`, null, {
         headers: new HttpHeaders({
           Authorization: 'Bearer ' + token,
         }),
