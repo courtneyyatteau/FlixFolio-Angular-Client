@@ -22,51 +22,40 @@ export class MovieCardComponent implements OnInit {
   ngOnInit(): void {
     this.getUser();
     this.getMovies();
-    this.getListFavorites();
   }
 
   getUser(): void {
     this.fetchApiData.getUser().subscribe((re: any) => {
       this.userData = re;
-      console.log(this.userData);
+      this.favsList = this.userData.FavoriteMovies;
+      console.log(this.userData.FavoriteMovies);
       return this.userData;
     });
   }
   getMovies(): void {
     this.fetchApiData.getAllMovies().subscribe((resp: any) => {
       this.movies = resp;
-      console.log(this.movies);
       return this.movies;
     });
   }
 
-  getListFavorites() {
-    this.fetchApiData.getAllMovies().subscribe((re: any) => {
-      this.movies = re;
-      this.movies.map((movie) => {
-        if (
-          movie._id ===
-          this.userData.FavoriteMovies.find(
-            (favorite) => favorite === movie._id
-          )
-        ) {
-          //console.log(movie);
-          this.favsList.push(movie);
-          return movie;
-        }
-      });
-    });
-    console.log(this.favsList);
-    return this.favsList;
-  }
-
-  addFav(id: string): void {
-    this.fetchApiData.addFavMovie(id).subscribe((result) => {
-      console.log(result);
-      this.ngOnInit();
-    });
-    this.snackBar.open('Movie added to favorites successfully!', 'OK', {
-      duration: 2000,
+  addFav(id: any): void {
+    console.log(id);
+    this.favsList.map((fav) => {
+      console.log(fav);
+      if (fav === id) {
+        this.snackBar.open('Movie ALREADY a favorite!', 'OK', {
+          duration: 2000,
+        });
+      } else {
+        this.fetchApiData.addFavMovie(id).subscribe((result) => {
+          return result;
+        });
+        this.snackBar.open('Movie added to favorites successfully!', 'OK', {
+          duration: 2000,
+        });
+        this.ngOnInit();
+      }
     });
   }
 
