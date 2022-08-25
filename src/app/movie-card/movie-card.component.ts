@@ -4,6 +4,8 @@ import { UserRegistrationService } from '../fetch-api-data.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { GenreComponent } from '../genre/genre.component';
 import { MatDialog } from '@angular/material/dialog';
+import { DirectorComponent } from '../director/director.component';
+import { MovieSynopsisComponent } from '../movie-synopsis/movie-synopsis.component';
 
 @Component({
   selector: 'app-movie-card',
@@ -68,7 +70,32 @@ export class MovieCardComponent implements OnInit {
         Name: name,
         Description: description,
       },
-      // Assign dialog width
+      width: '500px',
+    });
+  }
+
+  getDirector(
+    name: string,
+    description: string,
+    birth: Date,
+    image: any
+  ): void {
+    this.dialog.open(DirectorComponent, {
+      data: {
+        Name: name,
+        Description: description,
+        Birth: birth,
+        Image: image,
+      },
+      width: '500px',
+    });
+  }
+
+  getSynopsis(description: string): void {
+    this.dialog.open(MovieSynopsisComponent, {
+      data: {
+        Description: description,
+      },
       width: '500px',
     });
   }

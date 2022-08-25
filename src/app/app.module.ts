@@ -25,6 +25,8 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { FavoriteMoviesComponent } from './favorite-movies/favorite-movies.component';
 import { GenreComponent } from './genre/genre.component';
+import { DirectorComponent } from './director/director.component';
+import { MovieSynopsisComponent } from './movie-synopsis/movie-synopsis.component';
 
 const appRoutes: Routes = [
   { path: 'welcome', component: WelcomePageComponent },
@@ -45,6 +47,8 @@ const appRoutes: Routes = [
     NavbarComponent,
     FavoriteMoviesComponent,
     GenreComponent,
+    DirectorComponent,
+    MovieSynopsisComponent,
   ],
   imports: [
     BrowserModule,

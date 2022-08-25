@@ -19,8 +19,27 @@
       >
         Genre
       </button>
-      <button mat-button color="primary">Director</button>
-      <button mat-button color="primary">Synopsis</button>
+      <button
+        mat-button
+        color="primary"
+        (click)="
+          getDirector(
+            movie.Director.Name,
+            movie.Director.Bio,
+            movie.Director.Birth,
+            movie.Director.ImagePath
+          )
+        "
+      >
+        Director
+      </button>
+      <button
+        mat-button
+        color="primary"
+        (click)="getSynopsis(movie.Description)"
+      >
+        Synopsis
+      </button>
       <mat-icon
         (click)="addFav(movie._id)"
         [(ngModel)]="movie._id"

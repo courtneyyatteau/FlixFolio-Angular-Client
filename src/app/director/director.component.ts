@@ -1,23 +1,26 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatDialog } from '@angular/material/dialog';
 import { UserRegistrationService } from '../fetch-api-data.service';
+import { MatDialog } from '@angular/material/dialog';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
-  selector: 'app-genre',
-  templateUrl: './genre.component.html',
-  styleUrls: ['./genre.component.scss'],
+  selector: 'app-director',
+  templateUrl: './director.component.html',
+  styleUrls: ['./director.component.scss'],
 })
-export class GenreComponent implements OnInit {
+export class DirectorComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA)
     public data: {
       Name: string;
       Description: string;
+      Birth: Date;
+      Image: any;
     },
     public fetchApiData: UserRegistrationService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    public snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {}
