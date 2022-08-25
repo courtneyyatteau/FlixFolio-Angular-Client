@@ -110,7 +110,7 @@ export class UserRegistrationService {
   }
 
   //api call for adding a favorite movie to a user list
-  public addFavMovie(movieID: any): Observable<any> {
+  public addFavMovie(movieID: string): Observable<any> {
     const token = localStorage.getItem('token');
     const username = localStorage.getItem('user');
     return this.http

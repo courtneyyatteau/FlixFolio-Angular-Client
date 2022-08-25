@@ -2,6 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserRegistrationService } from '../fetch-api-data.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { GenreComponent } from '../genre/genre.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-movie-card',
@@ -16,7 +18,8 @@ export class MovieCardComponent implements OnInit {
   constructor(
     public fetchApiData: UserRegistrationService,
     public snackBar: MatSnackBar,
-    private router: Router
+    private router: Router,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -59,9 +62,14 @@ export class MovieCardComponent implements OnInit {
     });
   }
 
-  getGenre(genre: any): void {
-    this.fetchApiData.getGenre(genre).subscribe((result) => {
-      console.log(result);
+  getGenre(name: string, description: string): void {
+    this.dialog.open(GenreComponent, {
+      data: {
+        Name: name,
+        Description: description,
+      },
+      // Assign dialog width
+      width: '500px',
     });
   }
 }

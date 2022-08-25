@@ -24,6 +24,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { FavoriteMoviesComponent } from './favorite-movies/favorite-movies.component';
+import { GenreComponent } from './genre/genre.component';
 
 const appRoutes: Routes = [
   { path: 'welcome', component: WelcomePageComponent },
@@ -43,6 +44,7 @@ const appRoutes: Routes = [
     UserProfileComponent,
     NavbarComponent,
     FavoriteMoviesComponent,
+    GenreComponent,
   ],
   imports: [
     BrowserModule,

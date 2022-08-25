@@ -12,7 +12,7 @@
       <button
         mat-button
         color="primary"
-        (click)="getGenre(movie.Genre.Name)"
+        (click)="getGenre(movie.Genre.Name, movie.Genre.Description)"
         [(ngModel)]="movie.Genre.Name"
         value="{{ movie.Genre.Name }}"
         ngDefaultControl
