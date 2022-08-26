@@ -77,7 +77,7 @@ export class MovieCardComponent implements OnInit {
   getDirector(
     name: string,
     description: string,
-    birth: Date,
+    birth: string,
     image: any
   ): void {
     this.dialog.open(DirectorComponent, {
